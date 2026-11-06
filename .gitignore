@@ -6,3 +6,4 @@ config/oculus.properties
 # 繁中化打包輸出
 /translation/dist/
 __pycache__/
+/translation/work/
