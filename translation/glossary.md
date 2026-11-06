@@ -4,8 +4,9 @@
 
 | 英文 | 繁中 | 備註 |
 |---|---|---|
+| Adventurer's Quill | 冒險者的羽毛筆 |  |
 | Aether | 天境 | 維度（The Aether） |
-| Alchemy | 鍊金術 | 精通名稱 |
+| Alchemy | 鍊金術 | 精通名稱；統一用「鍊」 |
 | Apotheosis（機制） | 神化 | Apotheosis |
 | Arcana | 阿卡那 | Apotheosis |
 | Ars Nouveau | 新生魔藝 | 模組名 |
@@ -42,7 +43,9 @@
 | Estus Flask | 原素瓶 | 沿用黑暗靈魂譯名 |
 | Eterna | 位階 | Apotheosis |
 | Eternium | 永恆 | 永恆錠／永恆粒 |
+| Experience Dust | 經驗粉 |  |
 | Expertise | 熟練度 | 避開「專精」 |
+| Eye of the Storm | 狂瞳龍捲 | 遊戲內譯名 |
 | Forgotten | 被遺忘者 | 生物，未查證 |
 | Goblin Trader | 哥布林商人 |  |
 | Healing Flask | 治癒瓶 | Icaria 物品 |
@@ -53,21 +56,25 @@
 | Krag | 克拉格 | 支線故事人物 |
 | Lazurite | 天藍石 |  |
 | Loot Crate / Lootbox | 戰利品箱 |  |
+| Looting Charm | 掠奪寶珠 | 原版 Looting 為「掠奪」 |
 | Mailbox | 信箱 | 任務章節 |
 | Maren | 瑪倫 | wip 劇情人物 |
 | Market | 市集 | 任務章節 |
 | Mastery / Masteries | 精通 | |
 | Milestone | 里程碑 | |
+| Miniboss | 小頭目 |  |
 | Mite Fortress | 蟲蟎要塞 | Bumblezone |
 | Monster Essence | 怪物精華 |  |
 | Nature's Aura | 自然靈氣 | 模組名 |
 | Nephrite | 軟玉 |  |
+| Netherite | 獄髓 | 原版台灣譯名 |
 | Nether（模組自動轉繁） | 地獄 | cn2tw 會把「下界」改為「地獄」 |
 | Night Lich | 巫妖王 | 遊戲內譯名 |
 | Novice / Apprentice / Journeyman / Master | 新手級／學徒級／熟手級／大師級 | 精通等級 |
 | Paraglider | 滑翔翼 |  |
 | Passive Skill Tree | 被動技能樹 |  |
 | Pathfinder's Quill | 探路者的羽毛筆 | Quark 遊戲內譯名 |
+| Portable ... | 攜帶式～ | 如攜帶式迷你拆解機 |
 | Proficiency | 熟練值 | 與 Expertise 熟練度區隔 |
 | Protection of the Hive | 蜂群庇護 | Bumblezone |
 | Quanta | 量子化 | Apotheosis |
@@ -83,6 +90,7 @@
 | Scavenging | 拾荒 | 精通名稱 |
 | Scrap | 廢料 |  |
 | Sculk | 伏聆 | 原版台灣譯名；cn2tw 會把「幽匿」改為「伏聆」 |
+| Shulker | 界伏 | 原版台灣譯名；Shulkerate 系列為「潛影」 |
 | Slowness | 緩速 | 原版台灣譯名（1.20.1 zh_tw） |
 | Socket | 鑲孔 | Apotheosis |
 | Sophisticated Backpacks | 精緻背包 | 內文模組名可保留英文 |
@@ -90,6 +98,7 @@
 | Stinger Spear | 螫針矛 | Bumblezone |
 | Storage Terminal | 儲存終端 | Tom's Storage |
 | Stratus / Gravitite / Holystone / Ambrosium | 雲母鋼／重力晶／聖石／神能晶 | Aether 系列 |
+| Tanky（L2Hostility） | 重裝 | 遊戲內譯名 |
 | Task Coin | 任務硬幣 | 與 Quest Coin 任務金幣不同 |
 | The Garden Under | 地底花園 | |
 | The Vein | 晶脈 | wip 劇情；一般 ore vein 仍為「礦脈」 |
@@ -101,5 +110,6 @@
 | Vein Mining | 連鎖挖礦 |  |
 | Wandering Hold | 漂泊寶庫 | 支線故事；簡稱「寶庫」 |
 | Warlord | 戰爭領主 | 專精職業 |
+| Wilden | 維爾登 | Ars Nouveau；實體名用遊戲內「狂野～」 |
 | World Exploration | 世界探索 | 任務章節 |
 | Wrath of the Hive | 蜂群之怒 | Bumblezone |

@@ -16,7 +16,8 @@ import zipfile
 
 LANG_RE = re.compile(r'assets/([^/]+)/lang/(en_us|zh_tw|zh_cn)\.json$')
 # OpenCC 轉換後再換成 Minecraft 台灣官方用語（與任務書譯文一致）
-TERMS = {'下界': '地獄', '末地': '終界', '幽匿': '伏聆', '蜡': '蠟'}
+TERMS = {'下界': '地獄', '末地': '終界', '幽匿': '伏聆', '蜡': '蠟',
+         '重灌': '重裝'}  # s2twp 把「重装」當成電腦用語轉成「重灌」
 
 _spec = importlib.util.spec_from_file_location(
     'check_translations', os.path.join(os.path.dirname(os.path.abspath(__file__)), 'check_translations.py'))
