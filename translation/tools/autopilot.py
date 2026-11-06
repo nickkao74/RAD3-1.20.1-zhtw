@@ -28,7 +28,7 @@ TR = os.path.join(ROOT, 'translation')
 SRC = os.path.join(TR, 'source')
 WORK = os.path.join(TR, 'work')
 WORDS_PER_CHUNK = 1300
-ENTRIES_PER_CHUNK = 160
+ENTRIES_PER_CHUNK = 300
 STALE_SECONDS = 45 * 60
 
 
