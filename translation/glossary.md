@@ -83,7 +83,7 @@
 | Scavenging | 拾荒 | 精通名稱 |
 | Scrap | 廢料 |  |
 | Sculk | 伏聆 | 原版台灣譯名；cn2tw 會把「幽匿」改為「伏聆」 |
-| Slowness | 緩慢 | 原版台灣譯名 |
+| Slowness | 緩速 | 原版台灣譯名（1.20.1 zh_tw） |
 | Socket | 鑲孔 | Apotheosis |
 | Sophisticated Backpacks | 精緻背包 | 內文模組名可保留英文 |
 | Specialization | 專精 | |

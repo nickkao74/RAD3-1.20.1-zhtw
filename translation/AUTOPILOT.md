@@ -35,7 +35,8 @@
 
 ### 翻譯風格
 - 簡潔自然、不逐字硬譯；名稱短。全形標點；英數與中文之間加半形空格。列表開頭「- 」保留。
-- 原版 Minecraft 名詞用官方台灣譯名（Villager 村民、Nether 地獄、End 終界、Sculk 伏聆、Illager 窳民、Enchanting Table 附魔台）。
+- 原版 Minecraft 名詞用官方台灣譯名（Villager 村民、Nether 地獄、End 終界、Sculk 伏聆、Slowness 緩速、Enchanting Table 附魔台）。
+  不確定時查 1.20.1 原版 zh_tw 語言檔（唯讀）：`F:/curseforge/minecraft/Install/assets/objects/ea/ea26c1cee4ef2006eb3ac010b8489399ff6e5639`（JSON，鍵如 `effect.minecraft.slowness`）。
 - **譯名一致**：必須沿用 `F:/AI-Project/RAD3-1.20.1/translation/glossary.md`；遇到物品／機制名稱先 grep
   `translation/source/**/zh_tw.json` 找既有譯名。模組物品若在 `F:/curseforge/minecraft/Instances/Roguelike Adventures and Dungeons 3/mods/`
   的 jar 內有 zh_tw 或 zh_cn（zh_cn 用 `opencc` 的 s2twp 轉繁，再把 下界→地獄、末地→終界、幽匿→伏聆），以遊戲內譯名為準（只讀 jar，不修改）。
