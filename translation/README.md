@@ -33,6 +33,9 @@ python -I translation/tools/sync_sources.py
 git diff translation/source/        # 看哪些英文新增／變更，需要補翻
 
 # 3. 翻譯：編輯 translation/source/**/zh_tw.json（只放已翻的鍵，沒翻的自動退回英文）
+#    檢查色碼、%% 與多餘鍵；外部譯文檔可用 merge 檢查後合併
+python -I translation/tools/check_translations.py
+python -I translation/tools/check_translations.py merge translation/source/quests 譯文.json
 
 # 4. 打包給玩家
 python -I translation/tools/build_pack.py 1.0     # → translation/dist/RAD3-zh_tw-1.0.zip
