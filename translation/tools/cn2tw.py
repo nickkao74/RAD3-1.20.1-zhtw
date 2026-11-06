@@ -15,6 +15,8 @@ import sys
 import zipfile
 
 LANG_RE = re.compile(r'assets/([^/]+)/lang/(en_us|zh_tw|zh_cn)\.json$')
+# OpenCC 轉換後再換成 Minecraft 台灣官方用語（與任務書譯文一致）
+TERMS = {'下界': '地獄', '末地': '終界', '幽匿': '伏聆', '蜡': '蠟'}
 
 _spec = importlib.util.spec_from_file_location(
     'check_translations', os.path.join(os.path.dirname(os.path.abspath(__file__)), 'check_translations.py'))
@@ -32,6 +34,13 @@ def converter():
         return opencc.OpenCC('s2twp')
     except Exception:
         return opencc.OpenCC('s2twp.json')
+
+
+def to_tw(cc, text):
+    text = cc.convert(text)
+    for a, b in TERMS.items():
+        text = text.replace(a, b)
+    return text
 
 
 def load_json(z, name):
@@ -61,7 +70,7 @@ def convert(mods_dir):
     out, skipped = {}, 0
     for ns, d in sorted(langs.items()):
         en, tw, cn = d.get('en_us', {}), d.get('zh_tw', {}), d.get('zh_cn', {})
-        todo = {k: cc.convert(cn[k]) for k in en if k not in tw and cn.get(k, '').strip()}
+        todo = {k: to_tw(cc, cn[k]) for k in en if k not in tw and cn.get(k, '').strip()}
         errors, _ = check_translations.check(en, todo)
         bad = {e.split(': ', 1)[0] for e in errors}
         skipped += len(bad)
