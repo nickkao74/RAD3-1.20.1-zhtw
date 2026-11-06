@@ -6,7 +6,11 @@
   resourcepacks/RAD3-zh_tw.zip        模組包自帶文字與模組補充翻譯的資源包
   RAD3繁中化-安裝說明.txt
 
-用法: python -I translation/tools/build_pack.py [版本字串] [任務書資料夾]
+用法: python -I translation/tools/build_pack.py [版本字串] [任務書資料夾] [--mods <mods 資料夾>] [--skip-ns a,b]
+  --mods     指定時把 jar 內只有簡中的條目以 OpenCC s2twp 轉繁中併入資源包（需 pip install opencc）
+  --skip-ns  自動轉換時略過的命名空間（例如已由 ModsTranslationPack 涵蓋的模組）
+  優先順序: source/mods 人工譯文 > source/modpack 人工譯文 > 自動轉換；
+  source/modpack/<ns>/en_us.json 中的鍵（KubeJS/Paxi 覆寫）一律不用自動轉換。
   任務書資料夾預設為 repo 的 config/ftbquests/quests；玩家實際安裝的版本若與 repo 不同，
   請指向該版本的任務書（例如 CurseForge 實例的 config/ftbquests/quests），避免覆蓋成別版任務。
 """
@@ -28,6 +32,9 @@ PACK_FORMAT = 15  # 1.20.1
 _spec = importlib.util.spec_from_file_location('quests_i18n', os.path.join(TR, 'tools', 'quests_i18n.py'))
 quests_i18n = importlib.util.module_from_spec(_spec)
 _spec.loader.exec_module(quests_i18n)
+_spec = importlib.util.spec_from_file_location('cn2tw', os.path.join(TR, 'tools', 'cn2tw.py'))
+cn2tw = importlib.util.module_from_spec(_spec)
+_spec.loader.exec_module(cn2tw)
 
 
 def load(path):
@@ -48,8 +55,13 @@ def translated(src_dir):
     return {k: v for k, v in tw.items() if v and (not en or k in en)}
 
 
-def build_resourcepack():
+def build_resourcepack(auto=None):
     langs = {}
+    for ns, data in (auto or {}).items():
+        overridden = load(os.path.join(SRC, 'modpack', ns, 'en_us.json'))
+        data = {k: v for k, v in data.items() if k not in overridden}
+        if data:
+            langs[ns] = dict(data)
     for kind in ('modpack', 'mods'):
         for d in sorted(glob.glob(os.path.join(SRC, kind, '*'))):
             data = translated(d)
@@ -70,14 +82,26 @@ def build_resourcepack():
 
 def main():
     sys.stdout.reconfigure(encoding='utf-8')  # Windows 主控台預設編碼無法輸出中文
-    version = sys.argv[1] if len(sys.argv) > 1 else datetime.date.today().strftime('%Y%m%d')
+    args, opts = [], {}
+    it = iter(sys.argv[1:])
+    for a in it:
+        if a in ('--mods', '--skip-ns'):
+            opts[a] = next(it)
+        else:
+            args.append(a)
+    auto, skipped = {}, 0
+    if '--mods' in opts:
+        auto, skipped = cn2tw.convert(opts['--mods'])
+        for ns in opts.get('--skip-ns', '').split(','):
+            auto.pop(ns.strip(), None)
+    version = args[0] if args else datetime.date.today().strftime('%Y%m%d')
     stage = os.path.join(TR, 'dist', 'stage')
     shutil.rmtree(stage, ignore_errors=True)
-    quests_src = sys.argv[2] if len(sys.argv) > 2 else os.path.join(ROOT, 'config', 'ftbquests', 'quests')
+    quests_src = args[1] if len(args) > 1 else os.path.join(ROOT, 'config', 'ftbquests', 'quests')
     quests_out = os.path.join(stage, 'config', 'ftbquests', 'quests')
     quest_en = quests_i18n.run(quests_src, quests_out)
     quest_tw = {k: v for k, v in load(os.path.join(SRC, 'quests', 'zh_tw.json')).items() if v and k in quest_en}
-    rp, rp_count = build_resourcepack()
+    rp, rp_count = build_resourcepack(auto)
 
     out = os.path.join(TR, 'dist', f'RAD3-zh_tw-{version}.zip')
     with zipfile.ZipFile(out, 'w', zipfile.ZIP_DEFLATED) as z:
@@ -90,7 +114,10 @@ def main():
         z.writestr('resourcepacks/RAD3-zh_tw.zip', rp)
         z.write(os.path.join(TR, 'INSTALL.txt'), 'RAD3繁中化-安裝說明.txt')
     shutil.rmtree(stage, ignore_errors=True)
-    print(f'{out}\n  任務書譯文 {len(quest_tw)}/{len(quest_en)}；資源包譯文 {rp_count} 條')
+    print(f'{out}\n  任務書譯文 {len(quest_tw)}/{len(quest_en)}；資源包譯文 {rp_count} 條（{len(rp) // 1024} KB）')
+    if auto:
+        print(f'  自動簡轉繁 {len(auto)} 個命名空間、{sum(map(len, auto.values()))} 條（格式不符略過 {skipped} 條；'
+              f'與人工譯文重疊者以人工為準）')
 
 
 if __name__ == '__main__':

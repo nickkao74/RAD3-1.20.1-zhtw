@@ -39,6 +39,10 @@ python -I translation/tools/check_translations.py merge translation/source/quest
 
 # 4. 打包給玩家
 python -I translation/tools/build_pack.py 1.0     # → translation/dist/RAD3-zh_tw-1.0.zip
+#    加 --mods 時，jar 內只有簡中的條目會用 OpenCC s2twp 自動轉繁中併入資源包
+#    （需先 python -m pip install opencc；人工譯文優先，KubeJS/Paxi 覆寫的鍵不自動轉）
+#    --skip-ns a,b 可略過指定命名空間（例如想完全交給 ModsTranslationPack 的模組）
+python -I translation/tools/build_pack.py 1.0 --mods "F:/curseforge/minecraft/Instances/Roguelike Adventures and Dungeons 3/mods"
 
 # （選用）重新掃描模組 jar 的繁中覆蓋率
 python -I translation/tools/scan_mods.py "F:/curseforge/minecraft/Instances/Roguelike Adventures and Dungeons 3"

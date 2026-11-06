@@ -16,6 +16,8 @@ RAD3（Roguelike Adventures and Dungeons 3）繁體中文化附加包 — 安裝
 二、建議同時安裝（模組本體的繁中翻譯，非本包提供）
   - ModsTranslationPack（繁中模組翻譯資源包，CurseForge / Modrinth 搜尋同名）
     放進 resourcepacks 後啟用，順序放在 RAD3-zh_tw.zip 下面。
+  - RAD3-zh_tw.zip 已把「只有簡中」的模組自動轉成繁中（用詞可能較生硬），
+    放在上面時以本包為準；若較喜歡 ModsTranslationPack 的譯法，可把它移到上面。
 
 三、多人連線
   - 任務書文字由伺服器送出：伺服器端也要套用本包的 config/ftbquests/quests/
