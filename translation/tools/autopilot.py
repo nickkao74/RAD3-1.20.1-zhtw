@@ -150,7 +150,8 @@ def cmd_next(n):
         print(f'尚有 {len(open_chunks)} 個未完成工作塊，不切新塊')
         return
     busy = pending_keys()
-    existing = [int(re.search(r'chunk(\d+)', p).group(1)) for p in glob.glob(os.path.join(WORK, 'chunk*.en.json'))]
+    existing = [int(re.search(r'chunk(\d+)', p).group(1))
+                for p in glob.glob(os.path.join(WORK, '**', 'chunk*.en.json'), recursive=True)]
     seq = max(existing, default=0)
     made = []
     for src_dir, kind in targets():
