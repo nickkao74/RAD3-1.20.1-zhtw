@@ -33,6 +33,8 @@ python -I translation/tools/sync_sources.py
 git diff translation/source/        # 看哪些英文新增／變更，需要補翻
 
 # 3. 翻譯：編輯 translation/source/**/zh_tw.json（只放已翻的鍵，沒翻的自動退回英文）
+#    分工翻譯時，可把章節未翻條目切塊（同一任務不會被拆開）
+python -I translation/tools/prep_chunks.py work 4 adventure_begins
 #    檢查色碼、%% 與多餘鍵；外部譯文檔可用 merge 檢查後合併
 python -I translation/tools/check_translations.py
 python -I translation/tools/check_translations.py merge translation/source/quests 譯文.json
