@@ -1,1 +1,12 @@
-{}
+{
+  "affix.skilltree:jewelry/attribute/experienced": "老練",
+  "affix.skilltree:jewelry/attribute/experienced.suffix": "經驗",
+  "affix.skilltree:jewelry/attribute/hasty": "迅捷",
+  "affix.skilltree:jewelry/attribute/hasty.suffix": "急速",
+  "affix.skilltree:jewelry/attribute/healthy": "健壯",
+  "affix.skilltree:jewelry/attribute/healthy.suffix": "生命",
+  "affix.skilltree:jewelry/attribute/hidden": "隱匿",
+  "affix.skilltree:jewelry/attribute/hidden.suffix": "藏匿",
+  "affix.skilltree:jewelry/attribute/immortal": "不朽",
+  "affix.skilltree:jewelry/attribute/immortal.suffix": "永生"
+}

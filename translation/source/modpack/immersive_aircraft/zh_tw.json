@@ -1,1 +1,11 @@
-{}
+{
+  "item.immersive_aircraft.boiler": "飛艇鍋爐",
+  "item.immersive_aircraft.eco_engine": "新能源飛艇引擎",
+  "item.immersive_aircraft.engine": "飛艇引擎",
+  "item.immersive_aircraft.enhanced_propeller": "加固飛艇螺旋槳",
+  "item.immersive_aircraft.hull": "飛艇外殼",
+  "item.immersive_aircraft.hull_reinforcement": "飛艇外殼加固套件",
+  "item.immersive_aircraft.nether_engine": "地獄飛艇引擎",
+  "item.immersive_aircraft.sail": "飛艇帆",
+  "item.immersive_aircraft.steel_boiler": "鋼製飛艇鍋爐"
+}

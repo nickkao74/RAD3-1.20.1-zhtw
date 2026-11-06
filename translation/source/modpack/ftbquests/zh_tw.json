@@ -1,1 +1,7 @@
-{}
+{
+  "ftbquests.quest.shape.gear_important": "齒輪（重要）",
+  "ftbquests.quest.shape.hexagon_important": "六邊形（重要）",
+  "ftbquests.quest.shape.octagon_important": "八邊形（重要）",
+  "ftbquests.quest.shape.rsquare_important": "圓角方形（重要）",
+  "ftbquests.quest.shape.square_important": "方形（重要）"
+}

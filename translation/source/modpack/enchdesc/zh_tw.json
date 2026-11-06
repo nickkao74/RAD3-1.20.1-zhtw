@@ -1,1 +1,9 @@
-{}
+{
+  "enchantment.darkerdepths.quick_dash.desc": "每級使短劍的衝刺冷卻時間以乘算方式減少 25%。",
+  "enchantment.darkerdepths.swift_strike.desc": "使用短劍衝刺時，若在衝刺中造成傷害，將立即重置衝刺冷卻時間。",
+  "enchantment.deep_aether.gloves_reach.desc": "增加玩家與方塊互動的距離。",
+  "enchantment.minecraft.mending.desc": "一次性附魔。完全修復任何物品，並重設其鐵砧花費。",
+  "enchantment.ntrails.breach.desc": "提升攻擊穿戴盔甲目標時的效果。",
+  "enchantment.ntrails.density.desc": "依據你的摔落距離增加攻擊傷害。",
+  "enchantment.ntrails.wind_burst.desc": "重擊攻擊會將使用者彈回空中。"
+}

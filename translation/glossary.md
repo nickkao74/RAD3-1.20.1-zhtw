@@ -17,6 +17,7 @@
 | Bonfire | 篝火 | Bonfires 模組；避免與原版 Campfire 營火混淆 |
 | Book Wyrm | 書龍 |  |
 | Bounty Board | 懸賞告示板 |  |
+| Bounty（Bountiful） | X懸賞 | 遊戲內格式 |
 | Bumblezone | 蜂巢維度 | 維度（The Bumblezone） |
 | Carto Quill | 製圖羽毛筆 |  |
 | Catastrophe Scroll | 災厄捲軸 |  |
@@ -28,6 +29,7 @@
 | Coiled Sword | 螺旋劍 | 沿用黑暗靈魂譯名 |
 | Collections | 收藏 | 任務章節 |
 | Collector's Album | 收藏家卡冊 |  |
+| Critical Hit | 爆擊 |  |
 | Cultists' Crypt | 邪教徒地穴 |  |
 | Curios | Curios | 飾品欄模組，保留原名 |
 | Deepshelf / Hellshelf / Endshelf / Seashelf | 深暗書架／地獄書架／終界書架／海洋書架 | Apotheosis；模組 shelf 泛稱「書架」，原版 Bookshelf 為「書櫃」 |
@@ -37,6 +39,7 @@
 | Dungeon Raid | 地城突襲 | |
 | Echo Extractor | 回響萃取器 |  |
 | Embers Rekindled | 餘燼重燃 | 模組名 |
+| Ember（能量） | 餘燼能量 | Embers 遊戲內譯名 |
 | End（模組自動轉繁） | 終界 | cn2tw 會把「末地」改為「終界」 |
 | Esoteric | 玄奧 | 稀有度 |
 | Essence of the Bees | 蜜蜂精華 | Bumblezone |
@@ -61,6 +64,8 @@
 | Maren | 瑪倫 | wip 劇情人物 |
 | Market | 市集 | 任務章節 |
 | Mastery / Masteries | 精通 | |
+| Mastery Mark | 精通印記 | 如「鍊金術精通印記」 |
+| Mending（本包改名 Repair） | 修復 |  |
 | Milestone | 里程碑 | |
 | Miniboss | 小頭目 |  |
 | Mite Fortress | 蟲蟎要塞 | Bumblezone |
@@ -95,12 +100,15 @@
 | Socket | 鑲孔 | Apotheosis |
 | Sophisticated Backpacks | 精緻背包 | 內文模組名可保留英文 |
 | Specialization | 專精 | |
+| Stable / Unstable | 穩定：／不穩定： | Gear Upgrades 精煉前綴 |
+| Stamina | 耐力 | ParCool |
 | Stinger Spear | 螫針矛 | Bumblezone |
 | Storage Terminal | 儲存終端 | Tom's Storage |
 | Stratus / Gravitite / Holystone / Ambrosium | 雲母鋼／重力晶／聖石／神能晶 | Aether 系列 |
 | Tanky（L2Hostility） | 重裝 | 遊戲內譯名 |
 | Task Coin | 任務硬幣 | 與 Quest Coin 任務金幣不同 |
 | The Garden Under | 地底花園 | |
+| The Questing Sword / Questing Blade | 求索之刃 | radweaponry 與任務書同一物品 |
 | The Vein | 晶脈 | wip 劇情；一般 ore vein 仍為「礦脈」 |
 | Tier | 階／階級 |  |
 | Titanite | 楔石 | 沿用黑暗靈魂譯名 |
@@ -113,3 +121,4 @@
 | Wilden | 維爾登 | Ars Nouveau；實體名用遊戲內「狂野～」 |
 | World Exploration | 世界探索 | 任務章節 |
 | Wrath of the Hive | 蜂群之怒 | Bumblezone |
+| 能力名稱外框 [ ] | 【】 | radweaponry tooltip |

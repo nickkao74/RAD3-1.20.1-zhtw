@@ -1,1 +1,11 @@
-{}
+{
+  "bountiful.decree.bosskiller.name": "首領獵殺懸賞",
+  "bountiful.decree.coin_dung_exp.name": "地城硬幣走私",
+  "bountiful.decree.coin_iron_exp.name": "鐵幣走私",
+  "bountiful.decree.contraband.name": "走私品",
+  "bountiful.decree.dungeoneer.name": "地城探索懸賞",
+  "bountiful.decree.exploration.name": "探險懸賞",
+  "bountiful.decree.magician.name": "魔法師懸賞",
+  "bountiful.decree.mining.name": "採礦補給",
+  "bountiful.decree.sus.name": "可疑任務"
+}

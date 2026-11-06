@@ -1,1 +1,12 @@
-{}
+{
+  "dimensions.aether.the_aether": "天境",
+  "dimensions.bloodmagic.dungeon": "惡魔領域",
+  "dimensions.dimdungeons.build_dimension": "個人維度",
+  "dimensions.dimdungeons.dungeon_dimension": "維度地城",
+  "dimensions.graveyard.past": "過去（無法進入）",
+  "dimensions.landsoficaria.icaria": "伊卡利亞",
+  "dimensions.lrdynamicdungeon.dungeon_dimension": "無盡地城",
+  "dimensions.mining_dimension.mining": "挖礦維度",
+  "dimensions.undergarden.undergarden": "地底花園",
+  "enchantment.minecraft.mending": "修復"
+}
