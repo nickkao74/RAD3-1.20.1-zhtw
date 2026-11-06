@@ -153,32 +153,45 @@ def cmd_next(n):
     existing = [int(re.search(r'chunk(\d+)', p).group(1))
                 for p in glob.glob(os.path.join(WORK, '**', 'chunk*.en.json'), recursive=True)]
     seq = max(existing, default=0)
-    made = []
+    # 同一種類（quests / modpack / mods）的多個來源可合在同一塊，_meta.sources 記錄每個鍵的來源
+    made, cur, cur_kind, cur_src = [], {}, None, {}
+
+    def flush():
+        nonlocal cur, cur_src
+        if cur:
+            made.append((cur_kind, cur, cur_src))
+        cur, cur_src = {}, {}
+
     for src_dir, kind in targets():
+        if len(made) >= n:
+            break
         todo = {k: v for k, v in untranslated(src_dir).items() if k not in busy}
+        busy |= set(todo)
         if not todo:
             continue
+        if kind != cur_kind:
+            flush()
+            cur_kind = kind
         groups = {}
         for k, v in todo.items():
             groups.setdefault(group_key(kind, k), {})[k] = v
-        cur = {}
+        rel = os.path.relpath(src_dir, ROOT).replace(os.sep, '/')
         for g in groups.values():
             if cur and (words(cur) + words(g) > WORDS_PER_CHUNK or len(cur) + len(g) > ENTRIES_PER_CHUNK):
-                made.append((src_dir, kind, cur))
-                cur = {}
+                flush()
                 if len(made) >= n:
                     break
             cur.update(g)
-        if cur and len(made) < n:
-            made.append((src_dir, kind, cur))
-        if len(made) >= n:
-            break
-    for src_dir, kind, data in made:
+            cur_src.update({k: rel for k in g})
+    if len(made) < n:
+        flush()
+    for kind, data, srcs in made:
         seq += 1
         name = f'chunk{seq:03d}'
-        meta = {'source': os.path.relpath(src_dir, ROOT).replace(os.sep, '/'), 'kind': kind, 'tone': TONE[kind]}
+        sources = sorted(set(srcs.values()))
+        meta = {'kind': kind, 'tone': TONE[kind], 'sources': srcs}
         dump(os.path.join(WORK, name + '.en.json'), {'_meta': meta, **data}, indent=1, sort=False)
-        print(f'{name}: {meta["source"]} {len(data)} 條 {words(data)} 字')
+        print(f'{name}: {", ".join(s.split("/")[-1] for s in sources)} {len(data)} 條 {words(data)} 字')
     if not made:
         print('佇列已清空：所有目標都已翻譯或已在工作塊中')
 
@@ -201,26 +214,38 @@ def cmd_merge():
             print(f'{name}: JSON 錯誤 {e}')
             continue
         tw.pop('_meta', None)
-        src_dir = os.path.join(ROOT, meta['source'])
-        en = load(os.path.join(src_dir, 'en_us.json'))
+        srcs = meta.get('sources') or {k: meta['source'] for k in src}
+        # 同一個鍵可能出現在多個來源（如 kubejs 與 kubejs_registry），全部寫入
+        rels = sorted(set(srcs.values()) | {os.path.relpath(d, ROOT).replace(os.sep, '/')
+                                            for d, kind in targets() if kind == meta.get('kind')})
+        by_src = {}
+        for rel in rels:
+            en_keys = load(os.path.join(ROOT, rel, 'en_us.json'))
+            part = {k: v for k, v in tw.items() if k in en_keys}
+            if part:
+                by_src[rel] = part
         missing = [k for k in src if k not in tw]
-        errors, _ = check_translations.check(en, tw)
+        errors = []
+        for rel, part in by_src.items():
+            en = load(os.path.join(ROOT, rel, 'en_us.json')) if rel else {}
+            errors += check_translations.check(en, part)[0]
         if errors or missing:
             print(f'{name}: 錯誤 {len(errors)}、缺鍵 {len(missing)}，未合併')
             for e in errors[:10]:
                 print('   ', e)
             continue
-        tw_path = os.path.join(src_dir, 'zh_tw.json')
-        merged = load(tw_path)
-        merged.update(tw)
-        dump(tw_path, merged)
+        for rel, part in by_src.items():
+            tw_path = os.path.join(ROOT, rel, 'zh_tw.json')
+            merged = load(tw_path)
+            merged.update(part)
+            dump(tw_path, merged)
         done = os.path.join(WORK, 'done')
         os.makedirs(done, exist_ok=True)
         for suffix in ('.en.json', '.zh_tw.json', '.zh_tw.json.notes.md', '.dispatched'):
             f = os.path.join(WORK, name + suffix)
             if os.path.exists(f):
                 os.replace(f, os.path.join(done, name + suffix))
-        print(f'{name}: 已合併 {len(tw)} 條 → {meta["source"]}')
+        print(f'{name}: 已合併 {len(tw)} 條 → {", ".join(r.split("/")[-1] for r in by_src)}')
 
 
 def cmd_status():
