@@ -135,3 +135,9 @@
 | Valkyrum | 武神晶 | Ancient Aether 系列前綴 |
 | Cerver | 瑟弗 | Icaria 生物 |
 | Slab / Stairs / Spawn Egg / Shovel | 半磚／階梯／生怪蛋／鏟 | 原版台灣譯名；cn2tw 會自動替換 |
+| Starbuncle | 星寶石獸 | Ars Nouveau，jar 內 zh_tw 為機翻不用 |
+| Drygmy | 德格米 | Ars Nouveau |
+| Archwood | 至高木 | Ars Nouveau |
+| Source | 魔源 | Ars Nouveau；一般字，不檢查 |
+| Glyph | 魔符 | Ars Nouveau；不檢查 |
+| Scarab Amulet | 聖甲蟲護身符 | 沿用 jar；Tick 與其衝突，待統一 |
