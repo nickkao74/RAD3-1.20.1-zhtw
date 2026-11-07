@@ -132,3 +132,6 @@
 | World Exploration | 世界探索 | 任務章節 |
 | Wrath of the Hive | 蜂群之怒 | Bumblezone |
 | 能力名稱外框 [ ] | 【】 | radweaponry tooltip |
+| Valkyrum | 武神晶 | Ancient Aether 系列前綴 |
+| Cerver | 瑟弗 | Icaria 生物 |
+| Slab / Stairs / Spawn Egg / Shovel | 半磚／階梯／生怪蛋／鏟 | 原版台灣譯名；cn2tw 會自動替換 |
