@@ -6,7 +6,7 @@
 |---|---|---|
 | Adventurer's Quill | 冒險者的羽毛筆 |  |
 | Aether | 天境 | 維度（The Aether） |
-| Alchemy | 鍊金術 | 精通名稱；統一用「鍊」 |
+| Alchemy | 鍊金 | 精通名稱「鍊金術」、鍊金粉；統一用「鍊」 |
 | Amplification | 增幅 | 避開「強化」 |
 | Apotheosis（機制） | 神化 | Apotheosis |
 | Arachne | 阿拉克妮 | Icaria |
@@ -27,7 +27,7 @@
 | Champions | 菁英怪 |  |
 | Chunk Claiming | 區塊宣告 |  |
 | Cinnabar | 辰砂 |  |
-| Clues | 魔咒線索 | Apotheosis |
+| Clues | 魔咒線索 | Apotheosis；不檢查（一般「線索」） |
 | Coiled Sword | 螺旋劍 | 沿用黑暗靈魂譯名 |
 | Collections | 收藏 | 任務章節 |
 | Collector's Album | 收藏家卡冊 |  |
@@ -35,7 +35,7 @@
 | Crit Chance | 爆擊率 |  |
 | Critical Hit | 爆擊 |  |
 | Cultists' Crypt | 邪教徒地穴 |  |
-| Curios | Curios | 飾品欄模組，保留原名 |
+| Curios | Curios | 飾品欄模組，保留原名；不檢查（內文可譯「飾品」） |
 | Deepshelf / Hellshelf / Endshelf / Seashelf | 深暗書架／地獄書架／終界書架／海洋書架 | Apotheosis；模組 shelf 泛稱「書架」，原版 Bookshelf 為「書櫃」 |
 | Demon Will | 惡魔意志 | Blood Magic |
 | Desram | 德斯拉姆 | 支線故事人物（碎灣之王） |
@@ -44,7 +44,7 @@
 | Dungeon Raid | 地城突襲 | |
 | Echo Extractor | 回響萃取器 |  |
 | Embers Rekindled | 餘燼重燃 | 模組名 |
-| Ember（能量） | 餘燼能量 | Embers 遊戲內譯名 |
+| Ember（能量） | 餘燼能量 | Embers 遊戲內譯名；不檢查（Ember 也泛指餘燼晶體等） |
 | End（模組自動轉繁） | 終界 | cn2tw 會把「末地」改為「終界」 |
 | Esoteric | 玄奧 | 稀有度 |
 | Essence of the Bees | 蜜蜂精華 | Bumblezone |
@@ -55,7 +55,7 @@
 | Experience Dust | 經驗粉 |  |
 | Expertise | 熟練度 | 避開「專精」 |
 | Eye of the Storm | 狂瞳龍捲 | 遊戲內譯名 |
-| Forgotten | 被遺忘者 | 生物，未查證 |
+| Forgotten | 被遺忘者 | 生物，未查證；不檢查（形容詞用法常見） |
 | Goblin Trader | 哥布林商人 |  |
 | Healing Flask | 治癒瓶 | Icaria 物品 |
 | Homeward Bone | 歸還骨片 | 沿用黑暗靈魂譯名 |

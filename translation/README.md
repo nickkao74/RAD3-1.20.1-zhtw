@@ -7,11 +7,10 @@
 
 | 內容 | 處理方式 | 狀態 |
 |---|---|---|
-| 模組本體文字（387 個 jar） | 不自己翻：jar 內建 zh_tw ＋ 外部資源包（建議 ModsTranslationPack） | 見 `reports/mod_lang_status.md` |
-| FTB Quests 任務書（約 3,750 條、4.5 萬字） | `tools/quests_i18n.py` 語言鍵化，譯文寫 `source/quests/zh_tw.json` | 進行中 |
-| KubeJS / Paxi 語言檔（ponder、gearupgrades、endrem 覆寫等約 560 條） | 譯文寫 `source/modpack/<命名空間>/zh_tw.json`，打包成資源包 | 待翻 |
-| KubeJS 註冊物品名稱（`.displayName()`，約 180 條） | 同上，`source/modpack/kubejs_registry/` | 待翻 |
-| 模組缺漏補翻（選用） | `source/mods/<命名空間>/zh_tw.json`，打包進同一個資源包 | 未開始 |
+| 模組本體文字（387 個 jar） | jar 內建 zh_tw；只有簡中的由 `cn2tw.py` 自動轉繁；其餘建議 ModsTranslationPack | 見 `reports/mod_lang_status.md` |
+| FTB Quests 任務書（約 3,750 條、4.5 萬字） | `tools/quests_i18n.py` 語言鍵化，譯文寫 `source/quests/zh_tw.json` | 完成 |
+| KubeJS / Paxi 語言檔、Ponder、KubeJS 物品名 | `source/modpack/<命名空間>/zh_tw.json`，打包成資源包 | 完成 |
+| 無中文的重要模組（`autopilot.py` 的 `MOD_TARGETS`） | `source/mods/<命名空間>/zh_tw.json`，打包進同一個資源包 | 進行中（`autopilot.py status`） |
 
 目前**尚未處理**（需改動上游腳本或檔案，等主要內容完成後再評估）：
 
@@ -22,7 +21,10 @@
 
 ## 工作流程
 
-需要 Python 3.10+，不需安裝套件。所有指令在 repo 根目錄執行。
+**接續翻譯、分派、統一譯名、審查與上游更新的完整流程，請見 Claude Code skill `.claude/skills/rad3-zh-tw/`**
+（在此 repo 開的對話輸入 `/rad3-zh-tw`）。以下是手動操作時的常用指令。
+
+需要 Python 3.10+；自動轉繁需 `opencc`。所有指令在 repo 根目錄執行。
 
 ```bash
 # 1. 跟上游同步（main 有新提交時）
@@ -32,10 +34,13 @@ git fetch origin && git merge origin/main
 python -I translation/tools/sync_sources.py
 git diff translation/source/        # 看哪些英文新增／變更，需要補翻
 
+python -I translation/tools/autopilot.py invalidate   # 英文變了的鍵移除舊譯文，重新排入佇列
+
 # 3. 翻譯：編輯 translation/source/**/zh_tw.json（只放已翻的鍵，沒翻的自動退回英文）
-#    分工翻譯時，可把章節未翻條目切塊（同一任務不會被拆開）
-python -I translation/tools/prep_chunks.py work 4 adventure_begins
-#    檢查色碼、%% 與多餘鍵；外部譯文檔可用 merge 檢查後合併
+#    分工翻譯用佇列：autopilot.py status / next / merge（詳見 skill）
+python -I translation/tools/autopilot.py status
+#    檢查色碼、%% 與多餘鍵；譯名一致性；外部譯文檔可用 merge 檢查後合併
+python -I translation/tools/term_check.py
 python -I translation/tools/check_translations.py
 python -I translation/tools/check_translations.py merge translation/source/quests 譯文.json
 

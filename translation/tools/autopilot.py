@@ -13,6 +13,8 @@
   python -I translation/tools/autopilot.py next [塊數]           佇列中下一批切塊（已有未完成塊則不切）
   python -I translation/tools/autopilot.py dispatched <塊名>...  標記為已分派
   python -I translation/tools/autopilot.py merge                 檢查並合併已交回的譯文
+  python -I translation/tools/autopilot.py invalidate            上游更新後：英文已變更的鍵從 zh_tw 移除，重新排入佇列
+                                                                  （比對工作目錄與 git HEAD 的 en_us.json，需在 commit 前執行）
 """
 import glob
 import importlib.util
@@ -248,6 +250,32 @@ def cmd_merge():
         print(f'{name}: 已合併 {len(tw)} 條 → {", ".join(r.split("/")[-1] for r in by_src)}')
 
 
+def cmd_invalidate():
+    import subprocess
+    total = 0
+    for src_dir, _ in targets():
+        en_path = os.path.join(src_dir, 'en_us.json')
+        rel = os.path.relpath(en_path, ROOT).replace(os.sep, '/')
+        r = subprocess.run(['git', 'show', f'HEAD:{rel}'], cwd=ROOT, capture_output=True)
+        if r.returncode != 0:
+            continue
+        old = json.loads(r.stdout.decode('utf-8-sig'))
+        new = load(en_path)
+        changed = [k for k in new if k in old and old[k] != new[k]]
+        tw_path = os.path.join(src_dir, 'zh_tw.json')
+        tw = load(tw_path)
+        stale = [k for k in changed if k in tw]
+        if stale:
+            for k in stale:
+                del tw[k]
+            dump(tw_path, tw)
+            print(f'  {os.path.relpath(src_dir, SRC)}: 英文變更 {len(stale)} 條，已移除舊譯文')
+            for k in stale[:5]:
+                print(f'      {k}: {old[k][:40]!r} → {new[k][:40]!r}')
+            total += len(stale)
+    print(f'共 {total} 條需重翻（已重新排入佇列）')
+
+
 def cmd_status():
     total_en = total_tw = 0
     for src_dir, kind in targets():
@@ -284,6 +312,8 @@ def main():
         cmd_dispatched(sys.argv[2:])
     elif cmd == 'merge':
         cmd_merge()
+    elif cmd == 'invalidate':
+        cmd_invalidate()
     elif cmd == 'status':
         cmd_status()
     else:
