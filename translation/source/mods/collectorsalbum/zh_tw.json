@@ -967,7 +967,7 @@
   "item.collectorsalbum.uncommon_zombie_card": "殭屍卡",
   "itemGroup.collectorsalbum.album": "收藏家卡冊",
   "screen.collectorsalbum.album.bonuses": "加成",
-  "screen.collectorsalbum.album.main": "卡冊",
+  "screen.collectorsalbum.album.main": "收藏冊",
   "screen.collectorsalbum.card_pack_opening_screen": "卡包",
   "sound.collectorsalbum.flip_common": "翻開普通卡",
   "sound.collectorsalbum.flip_epic": "翻開史詩卡",
@@ -976,5 +976,5 @@
   "sound.collectorsalbum.flip_rare": "翻開稀有卡",
   "sound.collectorsalbum.flip_uncommon": "翻開罕見卡",
   "sound.collectorsalbum.pack_open": "卡包開啟",
-  "trinkets.slot.hand.album": "卡冊"
+  "trinkets.slot.hand.album": "收藏冊"
 }
