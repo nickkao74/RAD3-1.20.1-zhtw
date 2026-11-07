@@ -58,9 +58,10 @@ MOD_TARGETS = [
 # 玩家幾乎看不到的設定／指令類條目不翻
 SKIP_KEY_RE = re.compile(r'(^|[._])(config|configuration|command|commands|cmd|option|options|gui\.config)([._]|$)', re.I)
 
-# 佇列順序：任務書 → 模組包語言檔 → 模組
+# 佇列順序：任務書 → 技能資料包 → 模組包語言檔 → 模組
 TONE = {
     'quests': 'FTB Quests 任務書文字（標題、副標題、描述）；說明清楚、劇情用敘事口吻。',
+    'skills': 'Passive Skill Tree 技能樹的技能標題與說明；標題簡短（屬性名與遊戲內譯名一致），說明清楚。',
     'modpack': '模組包自帶的語言檔（物品名、tooltip、Ponder 教學、屬性名）；物品名簡短，說明清楚。',
     'mods': '模組語言檔（物品／方塊／生物名稱、tooltip、說明）；名稱簡短一致，同系列物品命名規則要統一。',
 }
@@ -118,7 +119,7 @@ def extract_mods(mods_dir):
 
 def targets():
     """依佇列順序回傳 [(來源資料夾, 種類)]。"""
-    out = [(os.path.join(SRC, 'quests'), 'quests')]
+    out = [(os.path.join(SRC, 'quests'), 'quests'), (os.path.join(SRC, 'skills'), 'skills')]
     out += [(d, 'modpack') for d in sorted(glob.glob(os.path.join(SRC, 'modpack', '*')))]
     out += [(os.path.join(SRC, 'mods', ns), 'mods') for ns in MOD_TARGETS
             if os.path.isdir(os.path.join(SRC, 'mods', ns))]

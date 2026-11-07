@@ -2,13 +2,16 @@
 
 輸出 translation/dist/RAD3-zh_tw-<版本>.zip，內容:
   config/ftbquests/quests/            語言鍵化後的任務書（覆蓋原檔）
-  kubejs/assets/rad3_i18n/lang/       任務書 en_us（英文退回用）與 zh_tw
+  config/paxi/datapacks/rad3-compat/data/skilltree/skills/  語言鍵化後的技能（覆蓋原檔）
+  kubejs/assets/rad3_i18n/lang/       任務書與技能的 en_us（英文退回用）與 zh_tw
   resourcepacks/RAD3-zh_tw.zip        模組包自帶文字與模組補充翻譯的資源包
   RAD3繁中化-安裝說明.txt
 
-用法: python -I translation/tools/build_pack.py [版本字串] [任務書資料夾] [--mods <mods 資料夾>] [--skip-ns a,b]
+用法: python -I translation/tools/build_pack.py [版本字串] [任務書資料夾] [--mods <mods 資料夾>] [--skip-ns a,b] [--skills <skills 資料夾>]
   --mods     指定時把 jar 內只有簡中的條目以 OpenCC s2twp 轉繁中併入資源包（需 pip install opencc）
   --skip-ns  自動轉換時略過的命名空間（例如已由 ModsTranslationPack 涵蓋的模組）
+  --skills   技能資料包的 skills 資料夾，預設為 repo 的 config/paxi/datapacks/rad3-compat/data/skilltree/skills；
+             與任務書一樣應指向玩家實際安裝的版本
   優先順序: source/mods 人工譯文 > source/modpack 人工譯文 > 自動轉換；
   source/modpack/<ns>/en_us.json 中的鍵（KubeJS/Paxi 覆寫）一律不用自動轉換。
   任務書資料夾預設為 repo 的 config/ftbquests/quests；玩家實際安裝的版本若與 repo 不同，
@@ -32,6 +35,9 @@ PACK_FORMAT = 15  # 1.20.1
 _spec = importlib.util.spec_from_file_location('quests_i18n', os.path.join(TR, 'tools', 'quests_i18n.py'))
 quests_i18n = importlib.util.module_from_spec(_spec)
 _spec.loader.exec_module(quests_i18n)
+_spec = importlib.util.spec_from_file_location('skills_i18n', os.path.join(TR, 'tools', 'skills_i18n.py'))
+skills_i18n = importlib.util.module_from_spec(_spec)
+_spec.loader.exec_module(skills_i18n)
 _spec = importlib.util.spec_from_file_location('cn2tw', os.path.join(TR, 'tools', 'cn2tw.py'))
 cn2tw = importlib.util.module_from_spec(_spec)
 _spec.loader.exec_module(cn2tw)
@@ -85,7 +91,7 @@ def main():
     args, opts = [], {}
     it = iter(sys.argv[1:])
     for a in it:
-        if a in ('--mods', '--skip-ns'):
+        if a in ('--mods', '--skip-ns', '--skills'):
             opts[a] = next(it)
         else:
             args.append(a)
@@ -101,20 +107,23 @@ def main():
     quests_out = os.path.join(stage, 'config', 'ftbquests', 'quests')
     quest_en = quests_i18n.run(quests_src, quests_out)
     quest_tw = {k: v for k, v in load(os.path.join(SRC, 'quests', 'zh_tw.json')).items() if v and k in quest_en}
+    skills_out = os.path.join(stage, *skills_i18n.DATAPACK_REL.split('/'))
+    skill_en = skills_i18n.apply(opts.get('--skills', skills_i18n.SKILLS_DIR), skills_out)
+    skill_tw = {k: v for k, v in load(os.path.join(SRC, 'skills', 'zh_tw.json')).items() if v and k in skill_en}
     rp, rp_count = build_resourcepack(auto)
 
     out = os.path.join(TR, 'dist', f'RAD3-zh_tw-{version}.zip')
     with zipfile.ZipFile(out, 'w', zipfile.ZIP_DEFLATED) as z:
-        for d, _, files in os.walk(quests_out):
+        for d, _, files in [*os.walk(quests_out), *os.walk(skills_out)]:
             for f in files:
                 p = os.path.join(d, f)
                 z.write(p, os.path.relpath(p, stage).replace(os.sep, '/'))
-        z.writestr('kubejs/assets/rad3_i18n/lang/en_us.json', to_bytes(quest_en))
-        z.writestr('kubejs/assets/rad3_i18n/lang/zh_tw.json', to_bytes(quest_tw))
+        z.writestr('kubejs/assets/rad3_i18n/lang/en_us.json', to_bytes({**quest_en, **skill_en}))
+        z.writestr('kubejs/assets/rad3_i18n/lang/zh_tw.json', to_bytes({**quest_tw, **skill_tw}))
         z.writestr('resourcepacks/RAD3-zh_tw.zip', rp)
         z.write(os.path.join(TR, 'INSTALL.txt'), 'RAD3繁中化-安裝說明.txt')
     shutil.rmtree(stage, ignore_errors=True)
-    print(f'{out}\n  任務書譯文 {len(quest_tw)}/{len(quest_en)}；資源包譯文 {rp_count} 條（{len(rp) // 1024} KB）')
+    print(f'{out}\n  任務書譯文 {len(quest_tw)}/{len(quest_en)}；技能譯文 {len(skill_tw)}/{len(skill_en)}；資源包譯文 {rp_count} 條（{len(rp) // 1024} KB）')
     if auto:
         print(f'  自動簡轉繁 {len(auto)} 個命名空間、{sum(map(len, auto.values()))} 條（格式不符略過 {skipped} 條；'
               f'與人工譯文重疊者以人工為準）')

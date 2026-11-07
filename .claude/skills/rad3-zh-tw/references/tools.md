@@ -15,10 +15,11 @@
 | `term_check.py` | `[--only <來源>] [--json <檔>]` | 譯名一致性：英文含 glossary 詞條但譯文未用該譯名的條目 |
 | `sync_sources.py` | （無參數） | 從目前的 `config/ftbquests/quests` 與 kubejs/paxi 重抽英文快照，回報各來源進度 |
 | `quests_i18n.py` | `extract` / `apply` / `status` | 任務書語言鍵化核心（通常由其他工具呼叫）；鍵格式 `rad3q.<物件ID>.title／subtitle／desc.<行>` |
+| `skills_i18n.py` | `extract` / `apply` | 技能資料包語言鍵化：移除寫死的 `title`（改用 `skill.<ns>.<路徑>.name`），說明的 `text` 改成 `translate`＋`fallback`（鍵 `rad3s.<路徑>.desc.<n>`）；通常由 sync_sources／build_pack 呼叫 |
 | `prep_chunks.py` | `<輸出資料夾> <塊數> <章節>...` | 舊版：只切任務書指定章節（現已由 `autopilot.py next` 取代） |
 | `cn2tw.py` | `<mods 資料夾> [輸出 json]` | jar 內只有簡中的條目以 OpenCC s2twp 轉繁並套用 `TERMS` 台灣用語替換 |
 | `scan_mods.py` | `<實例資料夾> [輸出 md]` | 重算 387 個 jar 的 zh_tw 覆蓋率報告 `translation/reports/mod_lang_status.md` |
-| `build_pack.py` | `[版本] [任務書資料夾] [--mods <mods>] [--skip-ns a,b]` | 打包 `translation/dist/RAD3-zh_tw-<版本>.zip`（語言鍵化任務書、kubejs 語言檔、資源包、安裝說明） |
+| `build_pack.py` | `[版本] [任務書資料夾] [--mods <mods>] [--skip-ns a,b] [--skills <skills>]` | 打包 `translation/dist/RAD3-zh_tw-<版本>.zip`（語言鍵化任務書與技能檔、kubejs 語言檔、資源包、安裝說明） |
 
 ## 調整參數
 

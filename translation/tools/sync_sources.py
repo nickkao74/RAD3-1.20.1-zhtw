@@ -79,6 +79,12 @@ def main():
                     'extract', os.path.join(ROOT, 'config', 'ftbquests', 'quests'), quests_en], check=True)
     report('quests', load(quests_en), os.path.join(SRC, 'quests', 'zh_tw.json'))
 
+    print('技能資料包:')
+    skills_en = os.path.join(SRC, 'skills', 'en_us.json')
+    subprocess.run([sys.executable, '-I', os.path.join(ROOT, 'translation', 'tools', 'skills_i18n.py'),
+                    'extract'], check=True)
+    report('skills', load(skills_en), os.path.join(SRC, 'skills', 'zh_tw.json'))
+
     print('模組包語言檔:')
     merged = {}
     for pattern in MODPACK_LANG_GLOBS:

@@ -17,6 +17,7 @@ description: RAD3（Roguelike Adventures and Dungeons 3）模組包繁體中文�
 | 路徑 | 用途 |
 |---|---|
 | `translation/source/quests/` | 任務書：`en_us.json`（由 snbt 抽出）＋ `zh_tw.json`（譯文） |
+| `translation/source/skills/` | 技能樹（Passive Skill Tree）技能標題與說明：由 `config/paxi/datapacks/rad3-compat/data/skilltree/skills/` 抽出（標題是寫死的英文，打包時改成語言鍵） |
 | `translation/source/modpack/<ns>/` | 模組包自帶語言檔（KubeJS、Paxi 覆寫、Ponder、KubeJS 物品名 `kubejs_registry`） |
 | `translation/source/mods/<ns>/` | 需自己翻的模組（jar 內無繁中、無簡中）；清單在 `autopilot.py` 的 `MOD_TARGETS` |
 | `translation/work/` | 進行中的工作塊（gitignore）；`done/` 保存已合併塊與譯者 notes |
@@ -52,7 +53,7 @@ python -I translation/tools/autopilot.py merge
   ```
   輸出「佇列已清空」→ 跳到第 7 步收尾。
 
-佇列順序固定：任務書 → 模組包語言檔 → `MOD_TARGETS` 順序的模組（長篇的 araxers_bestiary、meed 最後）。
+佇列順序固定：任務書 → 技能資料包 → 模組包語言檔 → `MOD_TARGETS` 順序的模組（長篇的 araxers_bestiary、meed 最後）。
 每塊 ≤1,300 英文字或 ≤300 條；任務書同一任務不會被拆開。
 
 ### 3. 分派翻譯子代理
@@ -101,7 +102,7 @@ python -I translation/tools/check_translations.py merge translation/source/<來�
 ```bash
 python -I translation/tools/build_pack.py <版本> "<實例>/config/ftbquests/quests" --mods "<實例>/mods"
 ```
-- 任務書資料夾要用**玩家實際安裝的版本**，否則會蓋成別版任務。
+- 任務書資料夾要用**玩家實際安裝的版本**，否則會蓋成別版任務；技能檔同理，版本不同時加 `--skills "<實例>/config/paxi/datapacks/rad3-compat/data/skilltree/skills"`。
 - 產物在 `translation/dist/RAD3-zh_tw-<版本>.zip`；把安裝方式（`translation/INSTALL.txt`）一起告訴使用者。
 - 若有設排程（CronCreate），佇列清空後刪除。
 
@@ -109,7 +110,7 @@ python -I translation/tools/build_pack.py <版本> "<實例>/config/ftbquests/qu
 
 ```bash
 git fetch upstream && git merge upstream/main
-python -I translation/tools/sync_sources.py                          # 重抽任務書與模組包英文
+python -I translation/tools/sync_sources.py                          # 重抽任務書、技能與模組包英文
 python -I translation/tools/autopilot.py mods "<實例>/mods"           # 模組更新時重抽模組英文
 python -I translation/tools/autopilot.py invalidate                  # 英文變了的鍵移除舊譯文 → 重新排入佇列
 python -I translation/tools/scan_mods.py "<實例>"                     # （選用）重算 jar 繁中覆蓋率報告

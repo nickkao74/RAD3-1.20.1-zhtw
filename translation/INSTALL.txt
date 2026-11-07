@@ -8,7 +8,8 @@ RAD3（Roguelike Adventures and Dungeons 3）繁體中文化附加包 — 安裝
   2. 在 CurseForge 對 RAD3 實例按右鍵 →「Open Folder」，開啟模組包資料夾
      （裡面有 mods、config、kubejs 等資料夾）。
   3. 把本 zip 內的所有內容解壓到該資料夾，遇到同名檔案選「取代」。
-     會覆蓋的只有 config/ftbquests/quests/（任務書），其餘都是新增檔案。
+     會覆蓋的只有 config/ftbquests/quests/（任務書）與
+     config/paxi/datapacks/rad3-compat/data/skilltree/skills/（技能樹），其餘都是新增檔案。
   4. 啟動遊戲：
      - 選項 → 語言 → 選「繁體中文（台灣）」。
      - 選項 → 資源包 → 啟用「RAD3-zh_tw.zip」，並把它放在清單最上面。
