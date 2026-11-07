@@ -7,7 +7,9 @@
 | Adventurer's Quill | 冒險者的羽毛筆 |  |
 | Aether | 天境 | 維度（The Aether） |
 | Alchemy | 鍊金術 | 精通名稱；統一用「鍊」 |
+| Amplification | 增幅 | 避開「強化」 |
 | Apotheosis（機制） | 神化 | Apotheosis |
+| Arachne | 阿拉克妮 | Icaria |
 | Arcana | 阿卡那 | Apotheosis |
 | Ars Nouveau | 新生魔藝 | 模組名 |
 | Artifact Crate | 神器箱 |  |
@@ -29,6 +31,8 @@
 | Coiled Sword | 螺旋劍 | 沿用黑暗靈魂譯名 |
 | Collections | 收藏 | 任務章節 |
 | Collector's Album | 收藏家卡冊 |  |
+| Crafted X | 自製X | skilltree |
+| Crit Chance | 爆擊率 |  |
 | Critical Hit | 爆擊 |  |
 | Cultists' Crypt | 邪教徒地穴 |  |
 | Curios | Curios | 飾品欄模組，保留原名 |
@@ -36,6 +40,7 @@
 | Demon Will | 惡魔意志 | Blood Magic |
 | Desram | 德斯拉姆 | 支線故事人物（碎灣之王） |
 | Diamond Coin | 鑽石幣 | 硬幣統一「X幣」 |
+| Dolomite | 白雲岩 | Icaria |
 | Dungeon Raid | 地城突襲 | |
 | Echo Extractor | 回響萃取器 |  |
 | Embers Rekindled | 餘燼重燃 | 模組名 |
@@ -46,6 +51,7 @@
 | Estus Flask | 原素瓶 | 沿用黑暗靈魂譯名 |
 | Eterna | 位階 | Apotheosis |
 | Eternium | 永恆 | 永恆錠／永恆粒 |
+| Evasion / Blocking | 閃避／格擋 |  |
 | Experience Dust | 經驗粉 |  |
 | Expertise | 熟練度 | 避開「專精」 |
 | Eye of the Storm | 狂瞳龍捲 | 遊戲內譯名 |
@@ -56,6 +62,7 @@
 | Icaria | 伊卡利亞 | Lands of Icaria |
 | Illager | 窳民 | 原版台灣官方譯名 |
 | Information | 資訊 | 任務章節 |
+| Innate Spell / School | 天賦法術／天賦學派 | additional_attributes |
 | Krag | 克拉格 | 支線故事人物 |
 | Lazurite | 天藍石 |  |
 | Loot Crate / Lootbox | 戰利品箱 |  |
@@ -88,6 +95,7 @@
 | Ragnarok | 諸神黃昏 | L2Hostility 詞條 |
 | Raid Token | 突襲代幣 |  |
 | Raw Nugget | 粗礦粒 | 粗金粒／粗銅粒 |
+| Raw X（礦物） | X原礦 | 照原版格式 |
 | Rectification | 校準 | Apotheosis |
 | Reinforce | 強化 |  |
 | Rough (gem) | 粗製～ | 粗製鑽石、粗製綠寶石 |
@@ -96,6 +104,7 @@
 | Scrap | 廢料 |  |
 | Sculk | 伏聆 | 原版台灣譯名；cn2tw 會把「幽匿」改為「伏聆」 |
 | Shulker | 界伏 | 原版台灣譯名；Shulkerate 系列為「潛影」 |
+| Sliver | 銀屑 | Icaria |
 | Slowness | 緩速 | 原版台灣譯名（1.20.1 zh_tw） |
 | Socket | 鑲孔 | Apotheosis |
 | Sophisticated Backpacks | 精緻背包 | 內文模組名可保留英文 |
@@ -103,6 +112,7 @@
 | Stable / Unstable | 穩定：／不穩定： | Gear Upgrades 精煉前綴 |
 | Stamina | 耐力 | ParCool |
 | Stinger Spear | 螫針矛 | Bumblezone |
+| Storage / Loot Vase | 儲物陶甕／戰利品陶甕 | Icaria |
 | Storage Terminal | 儲存終端 | Tom's Storage |
 | Stratus / Gravitite / Holystone / Ambrosium | 雲母鋼／重力晶／聖石／神能晶 | Aether 系列 |
 | Tanky（L2Hostility） | 重裝 | 遊戲內譯名 |
