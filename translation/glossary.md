@@ -141,3 +141,8 @@
 | Source | 魔源 | Ars Nouveau；一般字，不檢查 |
 | Glyph | 魔符 | Ars Nouveau；不檢查 |
 | Scarab Amulet | 聖甲蟲護身符 | 沿用 jar；Tick 與其衝突，待統一 |
+| Dungeon | 地城 | 全包統一，不用「地牢」 |
+| Raid | 襲擊 | 村莊襲擊；任務書自訂「地城突襲」系統維持「突襲」 |
+| Raider | 襲擊者 | 與 Pillager（掠奪者）區隔 |
+| Igloo | 冰屋 | |
+| Tick | 聖甲蟲 | 沿用 jar；Scarab Amulet 聖甲蟲護身符 |
