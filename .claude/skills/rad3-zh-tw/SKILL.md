@@ -8,8 +8,8 @@ description: RAD3（Roguelike Adventures and Dungeons 3）模組包繁體中文�
 你是**協調者**：不自己逐條翻譯，而是用 `translation/tools/` 的工具管理佇列、派子代理翻譯、合併、統一譯名、審查品質並 commit。
 所有進度都存在檔案裡，任何對話都能從中斷處接手。
 
-- Repo：`F:/AI-Project/RAD3-1.20.1`，分支 `zh_tw-translation`（上游 `origin/main` 是 dr3ams/RAD3-1.20.1）。
-- 模組包實例（唯讀，取 jar 與原版語言檔用）：`F:/curseforge/minecraft/Instances/Roguelike Adventures and Dungeons 3`
+- Repo：你 clone 下來的資料夾（以下路徑一律相對於 repo 根目錄），分支 `zh_tw-translation`。遠端：`origin` 是你的 fork，`upstream` 是 dr3ams/RAD3-1.20.1（沒有的話先 `git remote add upstream https://github.com/dr3ams/RAD3-1.20.1.git`）。
+- 本機路徑（`<實例>` 模組包實例、`<原版語言檔>` 原版 zh_tw）：記錄在 `.claude/skills/rad3-zh-tw/local.md`（已 gitignore）。第一次使用時複製 `local.example.md` 成 `local.md` 並填入自己的路徑；需要這些路徑的步驟先讀此檔。
 - 所有指令在 repo 根目錄執行；Python 一律加 `-I`。回覆使用者用繁體中文（台灣用語）。
 
 ## 檔案地圖
@@ -61,7 +61,7 @@ python -I translation/tools/autopilot.py merge
 python -I translation/tools/autopilot.py dispatched chunk041 chunk042 ...
 ```
 子代理提示（只換塊名）：
-> 請先閱讀 F:/AI-Project/RAD3-1.20.1/.claude/skills/rad3-zh-tw/references/translator.md 並嚴格遵守。翻譯 F:/AI-Project/RAD3-1.20.1/translation/work/chunkNNN.en.json，輸出到同資料夾 chunkNNN.zh_tw.json（與 chunkNNN.zh_tw.json.notes.md）。不要修改 repo 其他檔案。用繁體中文回報。
+> 請先閱讀 .claude/skills/rad3-zh-tw/references/translator.md 並嚴格遵守（本機路徑見 .claude/skills/rad3-zh-tw/local.md）。翻譯 translation/work/chunkNNN.en.json，輸出到同資料夾 chunkNNN.zh_tw.json（與 chunkNNN.zh_tw.json.notes.md）。不要修改 repo 其他檔案。用繁體中文回報。
 
 子代理回報時，記下它提到「需要跨塊統一」的譯名，留到第 4 步一起處理。全部交回後回到第 1 步合併。
 
@@ -72,7 +72,7 @@ python -I translation/tools/autopilot.py dispatched chunk041 chunk042 ...
    python -I translation/tools/term_check.py
    ```
 3. 衝突時擇一，優先順序：**遊戲內譯名**（jar 內 zh_tw，或 zh_cn 經 cn2tw 轉繁）＞ **1.20.1 原版 zh_tw** ＞ **glossary 既有譯名** ＞ 多數用法。
-   原版語言檔：`F:/curseforge/minecraft/Install/assets/objects/ea/ea26c1cee4ef2006eb3ac010b8489399ff6e5639`（JSON）。
+   原版語言檔：`<原版語言檔>`（JSON，路徑見 `local.md`）。
 4. 用小 Python 腳本對 `translation/source/**/zh_tw.json` 做替換。**只在英文原文含該詞的鍵上替換**（以 `en_us.json` 同鍵判斷），避免誤傷一般用詞。
    寫回格式：`json.dump(..., ensure_ascii=False, indent=2, sort_keys=True)` 加結尾換行。
 5. 把新定案的譯名加進 `translation/glossary.md`（表格三欄：英文｜繁中｜備註；按英文排序）。
@@ -89,7 +89,7 @@ git commit -m "Translate <內容> to zh_tw" -m "Co-Authored-By: ..."
 
 ### 6. 品質審查（每 2～3 批，或使用者要求時）
 挑最近合併的來源，開 1～2 個審查子代理：
-> 請先閱讀 F:/AI-Project/RAD3-1.20.1/.claude/skills/rad3-zh-tw/references/reviewer.md 並嚴格遵守。審查來源 `<translation/source/mods/xxx>`（或任務書鍵前綴清單），輸出修正檔 F:/AI-Project/RAD3-1.20.1/translation/work/review_<名稱>.zh_tw.json 與 .notes.md。不要修改 repo 其他檔案。
+> 請先閱讀 .claude/skills/rad3-zh-tw/references/reviewer.md 並嚴格遵守。審查來源 `<translation/source/mods/xxx>`（或任務書鍵前綴清單），輸出修正檔 translation/work/review_<名稱>.zh_tw.json 與 .notes.md。不要修改 repo 其他檔案。
 
 審查交回後：
 ```bash
@@ -108,7 +108,7 @@ python -I translation/tools/build_pack.py <版本> "<實例>/config/ftbquests/qu
 ## 跟上游更新
 
 ```bash
-git fetch origin && git merge origin/main
+git fetch upstream && git merge upstream/main
 python -I translation/tools/sync_sources.py                          # 重抽任務書與模組包英文
 python -I translation/tools/autopilot.py mods "<實例>/mods"           # 模組更新時重抽模組英文
 python -I translation/tools/autopilot.py invalidate                  # 英文變了的鍵移除舊譯文 → 重新排入佇列

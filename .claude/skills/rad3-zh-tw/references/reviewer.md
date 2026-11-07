@@ -1,6 +1,6 @@
 # 審查者規則（RAD3 繁中化）
 
-你負責審查已合併的譯文並提出修正。repo：`F:/AI-Project/RAD3-1.20.1`。
+你負責審查已合併的譯文並提出修正。repo 根目錄為目前工作目錄。
 只能新增你的兩個輸出檔，**不要修改 repo 任何其他檔案**。
 
 ## 輸入
@@ -10,7 +10,6 @@
 
 先跑一致性檢查取得線索：
 ```bash
-cd F:/AI-Project/RAD3-1.20.1
 python -I translation/tools/term_check.py --only <來源，如 mods/landsoficaria> --json <你的暫存路徑>/terms.json
 ```
 

@@ -25,10 +25,11 @@
 （在此 repo 開的對話輸入 `/rad3-zh-tw`）。以下是手動操作時的常用指令。
 
 需要 Python 3.10+；自動轉繁需 `opencc`。所有指令在 repo 根目錄執行。
+指令中的 `<實例>` 是你電腦上的模組包實例資料夾；個人路徑記錄在 `.claude/skills/rad3-zh-tw/local.md`（gitignore，範本見 `local.example.md`）。
 
 ```bash
 # 1. 跟上游同步（main 有新提交時）
-git fetch origin && git merge origin/main
+git fetch upstream && git merge upstream/main   # upstream = dr3ams/RAD3-1.20.1，沒有請先 git remote add upstream <網址>
 
 # 2. 更新英文快照與進度報告
 python -I translation/tools/sync_sources.py
@@ -49,10 +50,10 @@ python -I translation/tools/build_pack.py 1.0     # → translation/dist/RAD3-zh
 #    加 --mods 時，jar 內只有簡中的條目會用 OpenCC s2twp 自動轉繁中併入資源包
 #    （需先 python -m pip install opencc；人工譯文優先，KubeJS/Paxi 覆寫的鍵不自動轉）
 #    --skip-ns a,b 可略過指定命名空間（例如想完全交給 ModsTranslationPack 的模組）
-python -I translation/tools/build_pack.py 1.0 --mods "F:/curseforge/minecraft/Instances/Roguelike Adventures and Dungeons 3/mods"
+python -I translation/tools/build_pack.py 1.0 --mods "<實例>/mods"
 
 # （選用）重新掃描模組 jar 的繁中覆蓋率
-python -I translation/tools/scan_mods.py "F:/curseforge/minecraft/Instances/Roguelike Adventures and Dungeons 3"
+python -I translation/tools/scan_mods.py "<實例>"
 ```
 
 ## 任務書語言鍵規則

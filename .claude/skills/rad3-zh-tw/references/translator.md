@@ -1,6 +1,6 @@
 # 譯者規則（RAD3 繁中化）
 
-你負責翻譯一個工作塊。repo：`F:/AI-Project/RAD3-1.20.1`。只能新增你的兩個輸出檔，**不要修改 repo 任何其他檔案**（包括 glossary、source、tools）。
+你負責翻譯一個工作塊。repo 根目錄為目前工作目錄，本機路徑（`<實例>`、`<原版語言檔>`）見 `.claude/skills/rad3-zh-tw/local.md`。只能新增你的兩個輸出檔，**不要修改 repo 任何其他檔案**（包括 glossary、source、tools）。
 暫存腳本放在你自己的子資料夾（例如 scratchpad 下 `chunkNNN/`），不要和其他平行譯者共用檔名。
 
 ## 輸入與輸出
@@ -23,7 +23,7 @@
    repo 內有現成檢查函式可用：
    ```python
    import importlib.util
-   spec = importlib.util.spec_from_file_location('ct', 'F:/AI-Project/RAD3-1.20.1/translation/tools/check_translations.py')
+   spec = importlib.util.spec_from_file_location('ct', 'translation/tools/check_translations.py')
    ct = importlib.util.module_from_spec(spec); spec.loader.exec_module(ct)
    errors, notes = ct.check(en_dict, zh_dict)   # errors 必須為空
    ```
@@ -32,13 +32,13 @@
 
 依序查，越前面越優先：
 
-1. **遊戲內譯名**：該模組 jar（在 `F:/curseforge/minecraft/Instances/Roguelike Adventures and Dungeons 3/mods/`，唯讀）
+1. **遊戲內譯名**：該模組 jar（在 `<實例>/mods/`，唯讀）
    的 `assets/<ns>/lang/zh_tw.json`；沒有則讀 `zh_cn.json`，用 `opencc`（`opencc.OpenCC('s2twp')`）轉繁，
    再替換台灣原版用語：下界→地獄、末地→終界、幽匿→伏聆、臺階→半磚、樓梯→階梯、刷怪蛋→生怪蛋、鍬→鏟、重灌→重裝。
    提到別的模組的物品時，去查那個模組的 jar。
-2. **1.20.1 原版 zh_tw**：`F:/curseforge/minecraft/Install/assets/objects/ea/ea26c1cee4ef2006eb3ac010b8489399ff6e5639`（JSON）。
+2. **1.20.1 原版 zh_tw**：`<原版語言檔>`（JSON）。
    例：Slowness 緩速、Looting 掠奪、Netherite 獄髓、Shulker 界伏、Warden 伏守者、Biome 生態域、Villager 村民、Nether 地獄。
-3. **譯名表**：`F:/AI-Project/RAD3-1.20.1/translation/glossary.md`（必須沿用）。
+3. **譯名表**：`translation/glossary.md`（必須沿用）。
 4. **既有譯文**：grep `translation/source/**/zh_tw.json`（英文在同資料夾 `en_us.json` 同鍵）找同一物品／機制的譯法，特別是同模組的 `zh_tw.json`。
 
 建議先寫一個小查詢腳本：輸入英文詞 → 列出上述四個來源的命中，避免逐條手查。

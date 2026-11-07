@@ -7,3 +7,6 @@ config/oculus.properties
 /translation/dist/
 __pycache__/
 /translation/work/
+
+# 繁中化 skill 的個人本機路徑（範本見 local.example.md）
+/.claude/skills/rad3-zh-tw/local.md
